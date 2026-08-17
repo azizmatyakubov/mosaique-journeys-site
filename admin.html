@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mosaique Journeys admin content management." />
+    <title>Admin | Mosaique Journeys</title>
+    <script>
+      // Gate the admin workspace behind the login page (presentational, demo only)
+      if (sessionStorage.getItem("mosaique_admin_auth") !== "true") {
+        window.location.replace("admin-login.html");
+      }
+    </script>
+    <link rel="icon" type="image/png" href="assets/mosaique-emblem.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260712-adm2" />
+  </head>
+  <body class="admin-body">
+    <aside class="admin-sidebar">
+      <a class="brand admin-brand" href="index.html" aria-label="Mosaique Journeys home">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="assets/mosaique-logo.png" alt="" />
+        </span>
+        <span>Mosaique Journeys</span>
+      </a>
+
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a class="is-active" href="#overview">Overview</a>
+        <a href="#enquiries">Enquiries</a>
+        <a href="#journeys">Journeys</a>
+      </nav>
+
+      <div class="admin-sidebar-note">
+        <strong>Content status</strong>
+        <span data-admin-summary>Loading workspace...</span>
+      </div>
+      <a class="admin-back" href="index.html">View website</a>
+      <button class="admin-back" type="button" data-admin-logout>Sign out</button>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div>
+          <p class="admin-kicker">Admin workspace</p>
+          <h1>Content studio</h1>
+          <p class="admin-lead">Manage journey cards and enquiries from guests.</p>
+        </div>
+        <div class="admin-actions">
+          <a class="button button-dark" href="index.html">Open site</a>
+        </div>
+      </header>
+
+      <section class="metric-grid admin-metrics" id="overview" aria-label="Publishing metrics">
+        <article class="metric-card">
+          <span>Journey cards</span>
+          <strong data-metric="journeys">0</strong>
+          <small>Live on homepage</small>
+        </article>
+        <article class="metric-card">
+          <span>New enquiries</span>
+          <strong data-metric="enquiries">0</strong>
+          <small>Awaiting a reply</small>
+        </article>
+      </section>
+
+      <section class="admin-section" id="enquiries">
+        <div class="admin-section-header">
+          <div>
+            <p class="admin-kicker">Leads</p>
+            <h2>Enquiries</h2>
+            <p>Trip requests submitted from the website, newest first. Reply by email, then mark as handled.</p>
+          </div>
+          <button class="button button-light" type="button" data-enquiry-refresh>Refresh</button>
+        </div>
+        <div class="admin-panel enquiry-panel">
+          <div class="enquiry-admin-list" data-admin-enquiry-list>
+            <div class="content-empty">Loading enquiries…</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-section" id="journeys">
+        <div class="admin-section-header">
+          <div>
+            <p class="admin-kicker">Homepage itineraries</p>
+            <h2>Journey cards</h2>
+            <p>The featured journeys shown on the public homepage. Changes sync to Firestore and appear immediately.</p>
+          </div>
+          <button class="button button-dark" type="button" data-new-item="journey">New journey</button>
+        </div>
+        <div class="admin-cms-grid">
+          <article class="admin-panel content-queue">
+            <div class="queue-header">
+              <div>
+                <p class="admin-kicker">Itinerary cards</p>
+                <h3>Journeys</h3>
+              </div>
+            </div>
+            <div class="content-list" data-list="journeys"></div>
+          </article>
+
+          <form class="admin-panel admin-editor" data-editor="journey">
+            <input type="hidden" name="id" />
+            <input type="hidden" name="image" />
+            <div class="editor-heading">
+              <div>
+                <p class="admin-kicker">Journey card</p>
+                <h3 data-editor-title="journey">Edit journey</h3>
+              </div>
+              <label class="publish-toggle">
+                <input type="checkbox" name="published" />
+                <span>Visible</span>
+              </label>
+            </div>
+            <div class="image-field">
+              <span>Card image</span>
+              <div class="admin-image-preview" data-image-preview><span>No image yet</span></div>
+              <div class="image-field-actions">
+                <label class="button button-light image-upload-btn">
+                  Upload image
+                  <input type="file" accept="image/*" data-image-input hidden />
+                </label>
+                <button class="text-button" type="button" data-image-clear>Remove</button>
+              </div>
+            </div>
+            <label>
+              <span>Title (English)</span>
+              <input name="title" type="text" required placeholder="The Essential Silk Road" />
+            </label>
+            <div class="form-pair">
+              <label>
+                <span>Duration (English)</span>
+                <input name="duration" type="text" placeholder="9 Days" />
+              </label>
+              <label>
+                <span>Link</span>
+                <input name="link" type="text" placeholder="#enquire" />
+              </label>
+            </div>
+            <div class="form-pair">
+              <label>
+                <span>Price (English)</span>
+                <input name="price" type="text" placeholder="From €1,950 pp" />
+              </label>
+              <label>
+                <span>Cities (comma-separated)</span>
+                <input name="cities_text" type="text" placeholder="Khiva, Bukhara, Samarkand, Tashkent" />
+              </label>
+            </div>
+            <label>
+              <span>Highlights (English, one per line)</span>
+              <textarea name="highlights_text" rows="4" placeholder="Visit the Registan at dusk&#10;Night in a yurt camp&#10;Craft workshop in Khiva"></textarea>
+            </label>
+            <div class="form-pair">
+              <label>
+                <span>What's included (one per line)</span>
+                <textarea name="includes_text" rows="4" placeholder="Private guide&#10;All transfers&#10;Train tickets&#10;Airport assistance"></textarea>
+              </label>
+              <label>
+                <span>What's excluded (one per line)</span>
+                <textarea name="excludes_text" rows="4" placeholder="International flights&#10;Travel insurance&#10;Personal expenses"></textarea>
+              </label>
+            </div>
+            <div class="field-group">
+              <label class="field-group-label">Day-by-day itinerary (English)</label>
+              <div class="days-container" data-days-container></div>
+              <button class="text-button" type="button" data-add-day>+ Add day</button>
+              <input type="hidden" name="days_json" value="[]" />
+            </div>
+            <label>
+              <span>Summary (English)</span>
+              <textarea name="summary" rows="3" placeholder="An ideal first journey through Uzbekistan's Silk Road cities."></textarea>
+            </label>
+
+            <div class="lang-tabs" role="tablist">
+              <span class="lang-tabs-label">Translations</span>
+              <button type="button" class="lang-tab is-active" data-lang-tab="ru" role="tab">RU</button>
+              <button type="button" class="lang-tab" data-lang-tab="de" role="tab">DE</button>
+              <button type="button" class="lang-tab" data-lang-tab="fr" role="tab">FR</button>
+              <button type="button" class="lang-tab" data-lang-tab="es" role="tab">ES</button>
+              <button type="button" class="lang-tab" data-lang-tab="it" role="tab">IT</button>
+            </div>
+            <div class="lang-panel is-active" data-lang-panel="ru" role="tabpanel">
+              <label><span>Title (Russian)</span><input name="t_ru_title" type="text" placeholder="Классический Шёлковый путь" /></label>
+              <label><span>Duration (Russian)</span><input name="t_ru_duration" type="text" placeholder="9 дней" /></label>
+              <label><span>Summary (Russian)</span><textarea name="t_ru_summary" rows="3" placeholder="Идеальное первое путешествие…"></textarea></label>
+              <label><span>Price (Russian)</span><input name="t_ru_price" type="text" placeholder="От €1 950 с человека" /></label>
+              <label><span>Highlights (Russian, one per line)</span><textarea name="t_ru_highlights_text" rows="4" placeholder="Регистан на закате&#10;Ночь в юрте"></textarea></label>
+            </div>
+            <div class="lang-panel" data-lang-panel="de" role="tabpanel">
+              <label><span>Title (German)</span><input name="t_de_title" type="text" placeholder="Die klassische Seidenstraße" /></label>
+              <label><span>Duration (German)</span><input name="t_de_duration" type="text" placeholder="9 Tage" /></label>
+              <label><span>Summary (German)</span><textarea name="t_de_summary" rows="3" placeholder="Eine ideale erste Reise…"></textarea></label>
+              <label><span>Price (German)</span><input name="t_de_price" type="text" placeholder="Ab €1.950 p.P." /></label>
+              <label><span>Highlights (German, one per line)</span><textarea name="t_de_highlights_text" rows="4" placeholder="Registan bei Sonnenuntergang&#10;Nacht im Jurtenlager"></textarea></label>
+            </div>
+            <div class="lang-panel" data-lang-panel="fr" role="tabpanel">
+              <label><span>Title (French)</span><input name="t_fr_title" type="text" placeholder="La Route de la Soie essentielle" /></label>
+              <label><span>Duration (French)</span><input name="t_fr_duration" type="text" placeholder="9 jours" /></label>
+              <label><span>Summary (French)</span><textarea name="t_fr_summary" rows="3" placeholder="Un premier voyage idéal…"></textarea></label>
+              <label><span>Price (French)</span><input name="t_fr_price" type="text" placeholder="À partir de 1 950 € p.p." /></label>
+              <label><span>Highlights (French, one per line)</span><textarea name="t_fr_highlights_text" rows="4" placeholder="Le Registan au coucher du soleil&#10;Nuit dans un campement de yourtes"></textarea></label>
+            </div>
+            <div class="lang-panel" data-lang-panel="es" role="tabpanel">
+              <label><span>Title (Spanish)</span><input name="t_es_title" type="text" placeholder="La Ruta de la Seda esencial" /></label>
+              <label><span>Duration (Spanish)</span><input name="t_es_duration" type="text" placeholder="9 días" /></label>
+              <label><span>Summary (Spanish)</span><textarea name="t_es_summary" rows="3" placeholder="Un primer viaje ideal…"></textarea></label>
+              <label><span>Price (Spanish)</span><input name="t_es_price" type="text" placeholder="Desde €1.950 p.p." /></label>
+              <label><span>Highlights (Spanish, one per line)</span><textarea name="t_es_highlights_text" rows="4" placeholder="El Registán al atardecer&#10;Noche en un campamento de yurtas"></textarea></label>
+            </div>
+            <div class="lang-panel" data-lang-panel="it" role="tabpanel">
+              <label><span>Title (Italian)</span><input name="t_it_title" type="text" placeholder="La Via della Seta essenziale" /></label>
+              <label><span>Duration (Italian)</span><input name="t_it_duration" type="text" placeholder="9 giorni" /></label>
+              <label><span>Summary (Italian)</span><textarea name="t_it_summary" rows="3" placeholder="Un primo viaggio ideale…"></textarea></label>
+              <label><span>Price (Italian)</span><input name="t_it_price" type="text" placeholder="Da €1.950 p.p." /></label>
+              <label><span>Highlights (Italian, one per line)</span><textarea name="t_it_highlights_text" rows="4" placeholder="Il Registan al tramonto&#10;Notte in un campo di yurte"></textarea></label>
+            </div>
+
+            <div class="editor-actions">
+              <button class="button button-dark" type="submit">Save journey</button>
+              <button class="text-button danger" type="button" data-delete-item="journey">Delete</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="admin-toast" data-admin-toast hidden>Saved</div>
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
+    <script src="firebase-app.js?v=20260711-adm1"></script>
+    <script>
+      document.querySelector("[data-admin-logout]").addEventListener("click", function () {
+        sessionStorage.removeItem("mosaique_admin_auth");
+        var done = function () { window.location.replace("admin-login.html"); };
+        if (window.firebase && firebase.auth) {
+          firebase.auth().signOut().then(done, done);
+        } else {
+          done();
+        }
+      });
+    </script>
+    <script src="admin.js?v=20260711-adm1"></script>
+  </body>
+</html>

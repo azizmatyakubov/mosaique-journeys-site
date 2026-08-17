@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mosaique Journeys admin sign in." />
+    <title>Admin sign in | Mosaique Journeys</title>
+    <script>
+      // Already signed in? skip straight to the workspace.
+      if (sessionStorage.getItem("mosaique_admin_auth") === "true") {
+        window.location.replace("admin.html");
+      }
+    </script>
+    <link rel="icon" type="image/png" href="assets/mosaique-emblem.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260627-fb6" />
+  </head>
+  <body class="auth-page">
+    <main class="auth-card">
+      <div class="auth-brand">
+        <img src="assets/mosaique-emblem.png" alt="" />
+        <span>Mosaique Journeys</span>
+      </div>
+      <h1>Admin sign in</h1>
+      <p class="auth-sub">Sign in to manage stories, trips, and publishing.</p>
+
+      <form data-auth-form novalidate>
+        <p class="auth-error" data-auth-error role="alert"></p>
+        <div class="auth-field">
+          <label for="auth-email">Email</label>
+          <input id="auth-email" name="email" type="email" autocomplete="username" placeholder="you@mosaiquejourneys.com" required />
+        </div>
+        <div class="auth-field">
+          <label for="auth-password">Password</label>
+          <input id="auth-password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" required />
+        </div>
+        <button class="button button-primary auth-submit" type="submit">Sign in</button>
+      </form>
+
+      <p class="auth-hint">
+        Use your Mosaique Journeys agency login. Changes you publish here go live
+        on the website for all visitors.
+      </p>
+      <a class="auth-back" href="index.html">← Back to website</a>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-auth-compat.js"></script>
+    <script src="firebase-app.js?v=20260627-fb6"></script>
+    <script>
+      (function () {
+        var form = document.querySelector("[data-auth-form]");
+        var error = document.querySelector("[data-auth-error]");
+        var submit = form.querySelector(".auth-submit");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          error.textContent = "";
+          var email = form.email.value.trim().toLowerCase();
+          var password = form.password.value;
+          if (!email || !password) return;
+          submit.disabled = true;
+          submit.textContent = "Signing in…";
+          firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(function () {
+              sessionStorage.setItem("mosaique_admin_auth", "true");
+              window.location.href = "admin.html";
+            })
+            .catch(function (err) {
+              var msg = "Incorrect email or password.";
+              if (err && err.code === "auth/too-many-requests") {
+                msg = "Too many attempts. Please wait a moment and try again.";
+              } else if (err && err.code === "auth/network-request-failed") {
+                msg = "Network problem. Check your connection and try again.";
+              }
+              error.textContent = msg;
+              form.password.value = "";
+              form.password.focus();
+              submit.disabled = false;
+              submit.textContent = "Sign in";
+            });
+        });
+      })();
+    </script>
+  </body>
+</html>
