@@ -6,45 +6,51 @@ const defaults = {
       id: "journey-essential", order: 0, published: true, link: "#enquire",
       image: "assets/uz-registan.webp",
       duration: "9 Days",
-      title: "The Essential Silk Road",
-      summary: "An ideal first journey through Uzbekistan's four iconic Silk Road cities — Khiva, Bukhara, Samarkand, and Tashkent. Magnificent Islamic architecture, UNESCO sites, bustling bazaars, and centuries of history.",
-      updatedAt: "2026-07-11",
+      title: "Classic Uzbekistan",
+      summary: "A relaxed private journey through Tashkent, Samarkand, Bukhara, and Khiva, combining guided discovery with time to explore each city at your own pace.",
+      price: "2 guests: From €1,350 pp · 4 guests: From €1,050 pp",
+      cities: ["Tashkent", "Samarkand", "Bukhara", "Khiva", "Tashkent"],
+      updatedAt: "2026-08-17",
       t: {
-        ru: { duration: "9 дней", title: "Классический Шёлковый путь", summary: "Идеальное первое путешествие по четырём легендарным городам Шёлкового пути — Хиве, Бухаре, Самарканду и Ташкенту. Величественная исламская архитектура, объекты ЮНЕСКО, шумные базары и многовековая история." },
-        de: { duration: "9 Tage", title: "Die klassische Seidenstraße", summary: "Eine ideale erste Reise durch Usbekistans vier legendäre Seidenstraßen-Städte — Chiwa, Buchara, Samarkand und Taschkent. Prächtige islamische Architektur, UNESCO-Stätten, lebhafte Basare und jahrhundertealte Geschichte." },
-        fr: { duration: "9 jours", title: "La Route de la Soie essentielle", summary: "Un premier voyage idéal à travers les quatre villes emblématiques de la Route de la Soie en Ouzbékistan — Khiva, Boukhara, Samarcande et Tachkent. Architecture islamique magnifique, sites de l'UNESCO, bazars animés et des siècles d'histoire." },
-        es: { duration: "9 días", title: "La Ruta de la Seda esencial", summary: "Un primer viaje ideal por las cuatro ciudades icónicas de la Ruta de la Seda de Uzbekistán — Jiva, Bujará, Samarcanda y Taskent. Magnífica arquitectura islámica, sitios de la UNESCO, bazares bulliciosos y siglos de historia." },
-        it: { duration: "9 giorni", title: "La Via della Seta essenziale", summary: "Un primo viaggio ideale tra le quattro città iconiche della Via della Seta in Uzbekistan — Khiva, Bukhara, Samarcanda e Tashkent. Magnifica architettura islamica, siti UNESCO, bazar animati e secoli di storia." }
+        ru: { duration: "9 дней", title: "Классический Узбекистан", price: "2 гостя: от €1 350 · 4 гостя: от €1 050 с человека" },
+        de: { duration: "9 Tage", title: "Klassisches Usbekistan", price: "2 Gäste: ab €1.350 · 4 Gäste: ab €1.050 p.P." },
+        fr: { duration: "9 jours", title: "Ouzbékistan classique", price: "2 voyageurs : dès 1 350 € · 4 voyageurs : dès 1 050 € p.p." },
+        es: { duration: "9 días", title: "Uzbekistán clásico", price: "2 viajeros: desde 1.350 € · 4 viajeros: desde 1.050 € p.p." },
+        it: { duration: "9 giorni", title: "Uzbekistan classico", price: "2 ospiti: da €1.350 · 4 ospiti: da €1.050 p.p." }
       }
     },
     {
       id: "journey-desert", order: 1, published: true, link: "#enquire",
       image: "assets/uz-kyzylkum-night.webp",
       duration: "11 Days",
-      title: "Silk Road & Desert Escape",
-      summary: "Everything in the Essential Silk Road, plus a night in a traditional yurt camp by the ancient Ayaz Kala fortresses in the Kyzylkum Desert — local hospitality, live music, and unforgettable stargazing.",
-      updatedAt: "2026-07-11",
+      title: "Silk Road Cities & Desert Experience",
+      summary: "An unhurried private journey through Uzbekistan's great Silk Road cities, extended with ancient Khorezm fortresses and a memorable night at Ayaz Kala Yurt Camp.",
+      price: "2 guests: From €1,950 pp · 4 guests: From €1,650 pp",
+      cities: ["Tashkent", "Samarkand", "Bukhara", "Khiva", "Ancient Khorezm Fortresses", "Ayaz Kala", "Tashkent"],
+      updatedAt: "2026-08-17",
       t: {
-        ru: { duration: "11 дней", title: "Шёлковый путь и пустыня", summary: "Всё из «Классического Шёлкового пути» плюс ночь в традиционном юрточном лагере у древних крепостей Аяз-Кала в пустыне Кызылкум — местное гостеприимство, живая музыка и незабываемое звёздное небо." },
-        de: { duration: "11 Tage", title: "Seidenstraße & Wüsten-Auszeit", summary: "Alles aus der klassischen Seidenstraße, dazu eine Nacht in einem traditionellen Jurtencamp bei den antiken Ayaz-Kala-Festungen in der Kyzylkum-Wüste — lokale Gastfreundschaft, Live-Musik und unvergesslicher Sternenhimmel." },
-        fr: { duration: "11 jours", title: "Route de la Soie & escapade dans le désert", summary: "Tout le voyage essentiel, plus une nuit dans un campement de yourtes traditionnel près des anciennes forteresses d'Ayaz Kala dans le désert du Kyzylkoum — hospitalité locale, musique live et un ciel étoilé inoubliable." },
-        es: { duration: "11 días", title: "Ruta de la Seda y escapada al desierto", summary: "Todo el viaje esencial, más una noche en un campamento de yurtas junto a las antiguas fortalezas de Ayaz Kala en el desierto de Kyzylkum — hospitalidad local, música en vivo y un cielo estrellado inolvidable." },
-        it: { duration: "11 giorni", title: "Via della Seta e fuga nel deserto", summary: "Tutto il viaggio essenziale, più una notte in un campo tendato tradizionale vicino alle antiche fortezze di Ayaz Kala nel deserto del Kyzylkum — ospitalità locale, musica dal vivo e un cielo stellato indimenticabile." }
+        ru: { duration: "11 дней", title: "Города Шёлкового пути и пустыня", price: "2 гостя: от €1 950 · 4 гостя: от €1 650 с человека" },
+        de: { duration: "11 Tage", title: "Seidenstraßen-Städte & Wüstenerlebnis", price: "2 Gäste: ab €1.950 · 4 Gäste: ab €1.650 p.P." },
+        fr: { duration: "11 jours", title: "Villes de la Route de la Soie & désert", price: "2 voyageurs : dès 1 950 € · 4 voyageurs : dès 1 650 € p.p." },
+        es: { duration: "11 días", title: "Ciudades de la Ruta de la Seda y desierto", price: "2 viajeros: desde 1.950 € · 4 viajeros: desde 1.650 € p.p." },
+        it: { duration: "11 giorni", title: "Città della Via della Seta e deserto", price: "2 ospiti: da €1.950 · 4 ospiti: da €1.650 p.p." }
       }
     },
     {
       id: "journey-complete", order: 2, published: true, link: "#enquire",
       image: "assets/uz-chorminor.webp",
       duration: "14 Days",
-      title: "The Complete Uzbekistan Journey",
-      summary: "Our most complete itinerary: the legendary Silk Road cities together with Shahrisabz, birthplace of Amir Timur, and the craft-rich Fergana Valley — ceramics, silk, and authentic local life.",
-      updatedAt: "2026-07-11",
+      title: "Uzbekistan Grand Discovery",
+      summary: "A comprehensive private journey combining Uzbekistan's Silk Road cities with the Fergana Valley, Shahrisabz, and an authentic village-life experience in Vobkent.",
+      price: "2 guests: From €2,650 pp · 4 guests: From €2,250 pp",
+      cities: ["Tashkent", "Kokand", "Fergana Valley", "Tashkent", "Samarkand", "Shahrisabz", "Samarkand", "Bukhara", "Vobkent", "Bukhara", "Khiva", "Tashkent"],
+      updatedAt: "2026-08-17",
       t: {
-        ru: { duration: "14 дней", title: "Полное путешествие по Узбекистану", summary: "Наш самый полный маршрут: легендарные города Шёлкового пути вместе с Шахрисабзом, родиной Амира Тимура, и богатой ремёслами Ферганской долиной — керамика, шёлк и подлинная местная жизнь." },
-        de: { duration: "14 Tage", title: "Die komplette Usbekistan-Reise", summary: "Unsere umfassendste Route: die legendären Seidenstraßen-Städte zusammen mit Shahrisabz, dem Geburtsort von Amir Timur, und dem handwerklich reichen Ferghanatal — Keramik, Seide und authentisches lokales Leben." },
-        fr: { duration: "14 jours", title: "Le grand voyage en Ouzbékistan", summary: "Notre itinéraire le plus complet : les villes légendaires de la Route de la Soie avec Shakhrisabz, berceau d'Amir Timur, et la vallée de Ferghana, riche en artisanat — céramique, soie et vie locale authentique." },
-        es: { duration: "14 días", title: "El viaje completo por Uzbekistán", summary: "Nuestro itinerario más completo: las legendarias ciudades de la Ruta de la Seda junto con Shajrisabz, cuna de Amir Timur, y el valle de Fergana, rico en artesanía — cerámica, seda y vida local auténtica." },
-        it: { duration: "14 giorni", title: "Il viaggio completo in Uzbekistan", summary: "Il nostro itinerario più completo: le leggendarie città della Via della Seta insieme a Shahrisabz, città natale di Amir Timur, e la valle di Fergana, ricca di artigianato — ceramica, seta e autentica vita locale." }
+        ru: { duration: "14 дней", title: "Большое путешествие по Узбекистану", price: "2 гостя: от €2 650 · 4 гостя: от €2 250 с человека" },
+        de: { duration: "14 Tage", title: "Die große Usbekistan-Entdeckungsreise", price: "2 Gäste: ab €2.650 · 4 Gäste: ab €2.250 p.P." },
+        fr: { duration: "14 jours", title: "Grande découverte de l'Ouzbékistan", price: "2 voyageurs : dès 2 650 € · 4 voyageurs : dès 2 250 € p.p." },
+        es: { duration: "14 días", title: "Gran descubrimiento de Uzbekistán", price: "2 viajeros: desde 2.650 € · 4 viajeros: desde 2.250 € p.p." },
+        it: { duration: "14 giorni", title: "Grande scoperta dell'Uzbekistan", price: "2 ospiti: da €2.650 · 4 ospiti: da €2.250 p.p." }
       }
     }
   ],

@@ -1,5 +1,5 @@
 (function () {
-  var CACHE_KEY = "mosaique_journeys_cache_v2";
+  var CACHE_KEY = "mosaique_journeys_cache_v3";
 
   function getParam(name) {
     return new URLSearchParams(window.location.search).get(name);
@@ -156,7 +156,7 @@
 
   if (window.firebase && firebase.firestore) {
     firebase.firestore().collection("journeys").doc(id).get().then(function (doc) {
-      if (doc.exists) {
+      if (doc.exists && Number(doc.data().offerVersion || 0) >= 3) {
         renderJourney(doc.data());
       } else if (!cached) {
         window.location.replace("index.html#tours");

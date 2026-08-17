@@ -71,7 +71,7 @@
             { "@type": "Question", "name": "Do I need a visa?", "acceptedAnswer": { "@type": "Answer", "text": "Visa requirements depend on your nationality. Many countries can enter visa-free for a certain period, while others are eligible for an e-visa. We will gladly advise you on the requirements for your passport." } },
             { "@type": "Question", "name": "When is the best time to visit Uzbekistan?", "acceptedAnswer": { "@type": "Answer", "text": "Uzbekistan is a year-round destination. Spring and autumn are ideal for sightseeing, summer is hot and sunny with long days, and winter brings fewer tourists and a festive atmosphere." } },
             { "@type": "Question", "name": "Can I customise every itinerary?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. Every journey is tailor-made. Destinations, pace, hotel category, activities, transport, and cultural experiences can all be adjusted to your interests, schedule, and budget." } },
-            { "@type": "Question", "name": "How much does a journey cost?", "acceptedAnswer": { "@type": "Answer", "text": "Our tailor-made journeys start from €1,320 per person for the Standard package. The final price depends on the duration, number of travellers, season, hotel category, transport, and chosen experiences." } },
+            { "@type": "Question", "name": "How much does a journey cost?", "acceptedAnswer": { "@type": "Answer", "text": "Indicative prices range from €1,050 to €2,650 per person across our 9-, 11-, and 14-day private journeys, depending on party size. Final pricing depends on season, accommodation, room type, availability, and optional experiences." } },
             { "@type": "Question", "name": "What currency is used in Uzbekistan?", "acceptedAnswer": { "@type": "Answer", "text": "The official currency is the Uzbekistani Sum (UZS). Euros, US Dollars, and British Pounds are easily exchanged, and Visa and Mastercard are accepted in many hotels, restaurants, and larger shops." } },
             { "@type": "Question", "name": "How do we travel between cities?", "acceptedAnswer": { "@type": "Answer", "text": "Travel may include the modern high-speed train, domestic flights, or comfortable private vehicles with professional drivers. We select the most efficient and comfortable option for each part of your journey." } },
             { "@type": "Question", "name": "Why choose a tailor-made journey instead of a standard tour?", "acceptedAnswer": { "@type": "Answer", "text": "Our journeys are designed exclusively for you, built around your interests, pace, flight schedule, accommodation style, and budget, without following a rigid group schedule." } }
@@ -98,7 +98,7 @@
         } catch (e) {}
       })();
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260817-gal3" />
+    <link rel="stylesheet" href="styles.css?v=20260817-offer1" />
   </head>
   <body>
     <div class="page-loader" aria-hidden="true">
@@ -277,30 +277,33 @@
           <h2 data-i18n="jr.title">Start your Silk Road story</h2>
         </div>
         <div class="journey-grid journey-itinerary-grid" data-animate>
-          <a class="journey-itinerary" href="#enquire">
-            <img src="assets/uz-registan.webp" alt="The Essential Silk Road" loading="lazy" decoding="async">
+          <a class="journey-itinerary" href="journey.html?id=journey-essential">
+            <img src="assets/uz-registan.webp" alt="Classic Uzbekistan" loading="lazy" decoding="async">
             <div class="journey-itinerary-body">
               <span class="journey-duration">9 Days</span>
-              <h3>The Essential Silk Road</h3>
-              <p>An ideal first journey through Uzbekistan's four iconic Silk Road cities: Khiva, Bukhara, Samarkand, and Tashkent. Magnificent Islamic architecture, UNESCO sites, bustling bazaars, and centuries of history.</p>
+              <h3>Classic Uzbekistan</h3>
+              <p>A relaxed private journey through Tashkent, Samarkand, Bukhara, and Khiva, with guided discovery and time at leisure.</p>
+              <span class="journey-card-price">2 guests: From €1,350 pp · 4 guests: From €1,050 pp</span>
               <span class="journey-cta">View this journey <em aria-hidden="true">→</em></span>
             </div>
           </a>
-          <a class="journey-itinerary" href="#enquire">
-            <img src="assets/uz-kyzylkum-night.webp" alt="Silk Road &amp; Desert Escape" loading="lazy" decoding="async">
+          <a class="journey-itinerary" href="journey.html?id=journey-desert">
+            <img src="assets/uz-kyzylkum-night.webp" alt="Silk Road Cities and Desert Experience" loading="lazy" decoding="async">
             <div class="journey-itinerary-body">
               <span class="journey-duration">11 Days</span>
-              <h3>Silk Road &amp; Desert Escape</h3>
-              <p>Everything in the Essential Silk Road, plus a night in a traditional yurt camp by the ancient Ayaz Kala fortresses in the Kyzylkum Desert, with local hospitality, live music, and unforgettable stargazing.</p>
+              <h3>Silk Road Cities &amp; Desert Experience</h3>
+              <p>Uzbekistan's great Silk Road cities, ancient Khorezm fortresses, and a memorable night at Ayaz Kala Yurt Camp.</p>
+              <span class="journey-card-price">2 guests: From €1,950 pp · 4 guests: From €1,650 pp</span>
               <span class="journey-cta">View this journey <em aria-hidden="true">→</em></span>
             </div>
           </a>
-          <a class="journey-itinerary" href="#enquire">
-            <img src="assets/uz-chorminor.webp" alt="The Complete Uzbekistan Journey" loading="lazy" decoding="async">
+          <a class="journey-itinerary" href="journey.html?id=journey-complete">
+            <img src="assets/uz-chorminor.webp" alt="Uzbekistan Grand Discovery" loading="lazy" decoding="async">
             <div class="journey-itinerary-body">
               <span class="journey-duration">14 Days</span>
-              <h3>The Complete Uzbekistan Journey</h3>
-              <p>Our most complete itinerary: the legendary Silk Road cities together with Shahrisabz, birthplace of Amir Timur, and the craft-rich Fergana Valley: ceramics, silk, and authentic local life.</p>
+              <h3>Uzbekistan Grand Discovery</h3>
+              <p>Silk Road cities, the Fergana Valley, Shahrisabz, and an authentic village-life experience in Vobkent.</p>
+              <span class="journey-card-price">2 guests: From €2,650 pp · 4 guests: From €2,250 pp</span>
               <span class="journey-cta">View this journey <em aria-hidden="true">→</em></span>
             </div>
           </a>
@@ -309,35 +312,48 @@
 
       <section class="pricing-section" id="pricing" data-animate>
         <div class="pricing-head">
-          <p class="section-kicker" data-i18n="price.kicker">Transparent pricing</p>
-          <h2 data-i18n="price.title">Tailor-made journeys from €1,320 per person</h2>
-          <p class="pricing-lead" data-i18n="price.lead">That is our starting price for the Standard package. Because every journey is personalised, the final price depends on the length of your trip, the number of travellers, the season, your hotel category, transport, and the experiences you choose.</p>
+          <p class="section-kicker">Retail prices</p>
+          <h2>Private Uzbekistan journeys, priced by party size</h2>
+          <p class="pricing-lead">Indicative “from” rates per person, based on 3- to 4-star hotels, double or twin rooms, and the inclusions listed below.</p>
+        </div>
+        <div class="pricing-table-wrap">
+          <table class="pricing-table">
+            <thead>
+              <tr><th scope="col">Tour</th><th scope="col">2 guests</th><th scope="col">4 guests</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Classic Uzbekistan</th><td>From €1,350 pp</td><td>From €1,050 pp</td></tr>
+              <tr><th scope="row">Uzbekistan &amp; Desert</th><td>From €1,950 pp</td><td>From €1,650 pp</td></tr>
+              <tr><th scope="row">Grand Uzbekistan</th><td>From €2,650 pp</td><td>From €2,250 pp</td></tr>
+            </tbody>
+          </table>
         </div>
         <div class="pricing-grid">
           <div class="pricing-card pricing-included">
-            <h3 data-i18n="price.incTitle">The starting price includes</h3>
+            <h3>Each price assumes</h3>
             <ul>
-              <li data-i18n="price.inc1">All transport within Uzbekistan, including high-speed train and domestic flights where required</li>
-              <li data-i18n="price.inc2">Comfortable 3- to 5-star hotels with daily breakfast</li>
-              <li data-i18n="price.inc3">Private airport, railway station, and hotel transfers</li>
-              <li data-i18n="price.inc4">Professional guides</li>
-              <li data-i18n="price.inc5">Entrance fees to all monuments and museums in your itinerary</li>
-              <li data-i18n="price.inc6">Travel planning and support</li>
+              <li>3- to 4-star hotels in a double or twin room</li>
+              <li>Daily breakfast</li>
+              <li>Airport, railway station, and hotel transfers</li>
+              <li>Private transportation and an English-speaking guide</li>
+              <li>Train tickets, domestic flights, and entrance fees as specified</li>
+              <li>Village experience where included in the itinerary</li>
             </ul>
           </div>
-          <div class="pricing-card pricing-excluded">
-            <h3 data-i18n="price.exTitle">Not included</h3>
+          <div class="pricing-card pricing-factors">
+            <h3>What shapes your final quote</h3>
             <ul>
-              <li data-i18n="price.ex1">International flights</li>
-              <li data-i18n="price.ex2">Travel insurance</li>
-              <li data-i18n="price.ex3">Visa fees (if applicable)</li>
-              <li data-i18n="price.ex4">Lunches and dinners unless specified</li>
-              <li data-i18n="price.ex5">Personal expenses</li>
+              <li>Travel season: low, shoulder, or peak</li>
+              <li>Accommodation category: 3-star, 4-star, boutique, or 5-star</li>
+              <li>Room type and group size</li>
+              <li>Availability at the time of booking</li>
+              <li>Optional cooking, ceramic, wine, performance, village, and other experiences</li>
+              <li>Optional masterclasses are not included in the rates above</li>
             </ul>
           </div>
         </div>
         <div class="pricing-cta">
-          <p data-i18n="price.consult">Before you commit, we offer a free personal travel consultation; we discuss your interests, travel style, and expectations, then create a customised itinerary and a transparent quotation with no hidden costs.</p>
+          <p>Every itinerary can be fully customized to your interests, travel style, dates, accommodation preferences, and budget. Ask us for a detailed quotation prepared around your journey.</p>
           <a class="button button-primary" href="#enquire" data-i18n="price.cta">Request your free consultation</a>
         </div>
       </section>
@@ -397,9 +413,11 @@
 
       <section class="founders split-section" id="founders" data-animate>
         <div class="split-copy">
-          <p class="section-kicker" data-i18n="founders.kicker">What we do, and why</p>
-          <h2 data-i18n="founders.title">Founded to share the Silk Road we love</h2>
-          <p data-i18n="founders.body">Mosaique began with two friends who kept returning to Uzbekistan and wanted to share it the way they had come to know it, through the people, the craft, and the quiet moments between the monuments.</p>
+          <p class="section-kicker">About Mosaique Journeys</p>
+          <h2>Founded in Uzbekistan, created to share it with the world</h2>
+          <p>Mosaique Journeys began with one simple dream: to help the world discover Uzbekistan through the eyes of someone who proudly calls it home. It was founded by Mehrojbonu Ochilova, an Uzbek woman passionate about travel, cultural exchange, and hospitality.</p>
+          <p>With a Master's degree in International Business Management and experience in embassy and cultural cooperation, multilingual communication, translation, and tour organization, Mehrojbonu brings a deeply local and international perspective. She is an alumna of CAYLA and CIFUN 2023 and a member of Lions Clubs International.</p>
+          <p>Today, Mosaique collaborates with trusted professional guides, experienced drivers, and local experts throughout Uzbekistan. With gratitude for the family and friends who helped turn the dream into reality, our purpose remains the same: genuine hospitality, responsible tourism, and journeys that help preserve the country's natural and cultural heritage.</p>
           <button class="line-link" type="button" data-video-play data-youtube="GEVpE2GJO5Y" data-i18n="founders.watch">► Watch the film</button>
         </div>
         <div class="founders-media split-media">
@@ -663,6 +681,6 @@
     <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore-compat.js"></script>
     <script src="firebase-app.js?v=20260629-doc3"></script>
-    <script src="script.js?v=20260817-gal4"></script>
+    <script src="script.js?v=20260817-offer1"></script>
   </body>
 </html>

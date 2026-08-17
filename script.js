@@ -5,7 +5,7 @@
    when there is neither cache nor cloud data. Runs first so rebuilt cards are
    captured by the filter + i18n logic below. */
 (function () {
-  var CACHE_KEY = "mosaique_journeys_cache_v2";
+  var CACHE_KEY = "mosaique_journeys_cache_v3";
   // Fixed CTA label per language (the only static string on the card).
   var CTA = { en: "View this journey", ru: "Смотреть маршрут", de: "Reise ansehen", fr: "Voir ce voyage", es: "Ver este viaje", it: "Vedi il viaggio" };
 
@@ -26,116 +26,118 @@
   // Fallback journeys: shown until the agency publishes their own in Firestore.
   var JOURNEYS = [
     {
-      id: "journey-essential", order: 0, published: true, link: "#enquire",
+      id: "journey-essential", order: 0, offerVersion: 3, published: true, link: "#enquire",
       image: "assets/uz-registan.webp",
       duration: "9 Days",
-      title: "The Essential Silk Road",
-      summary: "An ideal first journey through Uzbekistan's four iconic Silk Road cities: Khiva, Bukhara, Samarkand, and Tashkent. Magnificent Islamic architecture, UNESCO sites, bustling bazaars, and centuries of history.",
-      price: "From €1,950 pp",
-      cities: ["Khiva", "Bukhara", "Samarkand", "Tashkent"],
+      title: "Classic Uzbekistan",
+      summary: "A relaxed private journey through Tashkent, Samarkand, Bukhara, and Khiva, combining guided discovery with time to explore each city at your own pace.",
+      price: "2 guests: From €1,350 pp · 4 guests: From €1,050 pp",
+      cities: ["Tashkent", "Samarkand", "Bukhara", "Khiva", "Tashkent"],
       highlights: [
-        "Khiva's ancient walled city (Ichan-Kala): a living UNESCO World Heritage site",
-        "Bukhara's Lyab-i-Hauz square and 12th-century Minaret Kalon",
-        "Samarkand's Registan: three towering madrasas framing a single square",
-        "Tashkent's Chorsu Bazaar and Soviet-era metro stations"
+        "Uzbekistan's four essential cities in one carefully paced journey",
+        "Guided discovery in Tashkent, Samarkand, Bukhara, and Khiva",
+        "High-speed rail between Tashkent, Samarkand, and Bukhara",
+        "Domestic flights from Bukhara to Urgench and Urgench to Tashkent",
+        "Free time for markets, cafés, workshops, and optional experiences"
       ],
-      includes: ["Private English-speaking guide", "All in-country transfers", "High-speed train tickets", "Comfortable 3–5 star hotels with daily breakfast", "Airport pick-up and drop-off", "Monument entrance fees"],
-      excludes: ["International flights", "Travel insurance", "Lunches and dinners (unless noted)", "Personal expenses"],
+      includes: ["3- to 4-star hotels in a double or twin room", "Daily breakfast", "Airport, railway station, and hotel transfers", "Private transportation", "English-speaking guide", "High-speed train tickets where specified", "Domestic flights where specified", "Entrance fees"],
+      excludes: ["International flights", "Travel insurance", "Lunches and dinners unless specified", "Optional masterclasses and activities", "Personal expenses"],
       days: [
-        { day: 1, title: "Arrival in Tashkent", body: "Met at Tashkent International Airport and transferred to your hotel. Evening at leisure to explore the neighbourhood." },
-        { day: 2, title: "Tashkent city tour", body: "Chorsu Bazaar, the Khast Imam complex, and a ride on the ornate Soviet-era metro. Afternoon departure by high-speed train to Samarkand." },
-        { day: 3, title: "Samarkand: the Registan", body: "Morning at the legendary Registan square, followed by Shah-i-Zinda necropolis and Bibi-Khanym Mosque." },
-        { day: 4, title: "Samarkand: Gur-e-Amir and surrounds", body: "Gur-e-Amir mausoleum, Ulugh Beg observatory, and a visit to a local ceramics workshop." },
-        { day: 5, title: "Samarkand → Bukhara by train", body: "Morning train to Bukhara. Afternoon stroll around Lyab-i-Hauz square and the old Jewish quarter." },
-        { day: 6, title: "Bukhara: monuments and bazaars", body: "Ark Citadel, Bolo Hauz mosque, Minaret Kalon, and the covered trading domes." },
-        { day: 7, title: "Bukhara → Khiva by road", body: "Scenic drive across the Kyzylkum steppe. Arrival in Khiva at dusk: first glimpse of Ichan-Kala's mud-brick towers." },
-        { day: 8, title: "Khiva: Ichan-Kala", body: "Full day inside the walled old city: Juma Mosque, Kalta Minor, and the Muhammad Amin Khan Madrasa." },
-        { day: 9, title: "Khiva to Tashkent, departure", body: "Morning flight back to Tashkent for international connections, or onward travel." }
+        { day: 1, title: "Arrival in Tashkent", body: "Welcome to Uzbekistan! Upon arrival at Tashkent International Airport, you will be met by your guide and transferred to your hotel. Depending on your arrival time, enjoy a guided introduction to the capital, discovering its blend of modern life, Soviet heritage, and traditional Uzbek culture. Overnight in Tashkent." },
+        { day: 2, title: "Tashkent at Leisure → Samarkand", body: "Enjoy the day at your own pace. Visit museums, browse lively Chorsu Bazaar, relax in one of the city's cafés, or choose from optional experiences. In the evening, transfer to the railway station and board the high-speed train to Samarkand. Upon arrival, transfer to your hotel." },
+        { day: 3, title: "Discover Samarkand", body: "Spend a full day exploring the legendary Silk Road city of Samarkand. Accompanied by your guide, discover its magnificent architectural masterpieces, historic neighborhoods, and vibrant atmosphere while learning about its remarkable history." },
+        { day: 4, title: "Samarkand at Leisure", body: "Enjoy Samarkand at your own pace. Revisit your favorite monuments, wander through local markets, or relax in the city's charming cafés. Optional paper-making workshops, wine tasting, cooking classes, or countryside excursions can be arranged upon request." },
+        { day: 5, title: "Samarkand → Bukhara", body: "After breakfast, transfer to the railway station for the high-speed train to Bukhara. Upon arrival, check in to your hotel before joining a guided afternoon walk through the UNESCO-listed Old Town. In the evening, enjoy dinner in one of Bukhara's atmospheric traditional restaurants." },
+        { day: 6, title: "Explore Bukhara", body: "Continue discovering Bukhara during a half-day guided excursion through its historic monuments, trading domes, and picturesque alleyways. The afternoon is free for independent exploration, shopping, or simply soaking up the timeless atmosphere of this ancient city." },
+        { day: 7, title: "Bukhara → Khiva", body: "Transfer to the airport for your domestic flight to Urgench. Upon arrival, continue to Khiva and begin your guided exploration of magnificent Ichan-Kala, one of the best-preserved medieval cities along the Silk Road. Overnight in Khiva." },
+        { day: 8, title: "Khiva → Tashkent", body: "Enjoy a relaxed morning and walk through Khiva's quieter streets before transferring to Urgench Airport for your domestic flight to Tashkent. Upon arrival, transfer to your hotel and enjoy the rest of the day at leisure for shopping, independent sightseeing, or a farewell dinner." },
+        { day: 9, title: "Departure", body: "After breakfast, transfer to Tashkent International Airport for your onward flight, marking the end of your unforgettable journey through the Silk Road cities of Uzbekistan." }
       ],
       t: {
-        ru: { duration: "9 дней", title: "Классический Шёлковый путь", summary: "Идеальное первое путешествие по четырём легендарным городам Шёлкового пути: Хиве, Бухаре, Самарканду и Ташкенту.", price: "От €1 950 с человека", highlights: ["Древний город-крепость Хивы (Ичан-Кала): живой объект ЮНЕСКО","Площадь Ляби-Хауз и минарет Калон XII века в Бухаре","Площадь Регистан в Самарканде: три медресе вокруг одной площади","Чорсу-базар и советские станции метро в Ташкенте"] },
-        de: { duration: "9 Tage", title: "Die klassische Seidenstraße", summary: "Eine ideale erste Reise durch Usbekistans vier legendäre Seidenstraßen-Städte.", price: "Ab €1.950 p.P.", highlights: ["Khiwas ummauerte Altstadt Ichan-Kala: lebendiges UNESCO-Welterbe","Labi-Hauz-Platz und Minarett Kalon aus dem 12. Jh. in Buchara","Samarkands Registan: drei Medressen um einen Platz","Chorsu-Basar und sowjetische Metrostationen in Taschkent"] },
-        fr: { duration: "9 jours", title: "La Route de la Soie essentielle", summary: "Un premier voyage idéal à travers les quatre villes emblématiques de la Route de la Soie en Ouzbékistan.", price: "À partir de 1 950 € p.p.", highlights: ["La ville fortifiée d'Ichane-Qala à Khiva: patrimoine UNESCO vivant","La place Labi-Hauz et le minaret Kalon du XIIe siècle à Boukhara","Le Régistan de Samarcande: trois médersas autour d'une place","Le bazar Chorsu et les stations de métro soviétiques à Tachkent"] },
-        es: { duration: "9 días", title: "La Ruta de la Seda esencial", summary: "Un primer viaje ideal por las cuatro ciudades icónicas de la Ruta de la Seda de Uzbekistán.", price: "Desde €1.950 p.p.", highlights: ["La ciudad amurallada de Khiva (Ichan-Kalá): Patrimonio de la Humanidad vivo","La plaza Lyabi-Hauz y el minarete Kalon del siglo XII en Bujará","El Registán de Samarcanda: tres madrasas en torno a una plaza","El bazar Chorsu y las estaciones de metro soviéticas en Taskent"] },
-        it: { duration: "9 giorni", title: "La Via della Seta essenziale", summary: "Un primo viaggio ideale tra le quattro città iconiche della Via della Seta in Uzbekistan.", price: "Da €1.950 p.p.", highlights: ["La città murata di Khiva (Ichan-Kala): sito UNESCO vivente","Piazza Lyab-i-Hauz e il minareto Kalon del XII sec. a Bukhara","Il Registan di Samarcanda: tre madrasse intorno a una piazza","Il bazar Chorsu e le stazioni della metropolitana sovietica a Tashkent"] }
+        ru: { duration: "9 дней", title: "Классический Узбекистан", price: "2 гостя: от €1 350 · 4 гостя: от €1 050 с человека" },
+        de: { duration: "9 Tage", title: "Klassisches Usbekistan", price: "2 Gäste: ab €1.350 · 4 Gäste: ab €1.050 p.P." },
+        fr: { duration: "9 jours", title: "Ouzbékistan classique", price: "2 voyageurs : dès 1 350 € · 4 voyageurs : dès 1 050 € p.p." },
+        es: { duration: "9 días", title: "Uzbekistán clásico", price: "2 viajeros: desde 1.350 € · 4 viajeros: desde 1.050 € p.p." },
+        it: { duration: "9 giorni", title: "Uzbekistan classico", price: "2 ospiti: da €1.350 · 4 ospiti: da €1.050 p.p." }
       }
     },
     {
-      id: "journey-desert", order: 1, published: true, link: "#enquire",
+      id: "journey-desert", order: 1, offerVersion: 3, published: true, link: "#enquire",
       image: "assets/uz-kyzylkum-night.webp",
       duration: "11 Days",
-      title: "Silk Road & Desert Escape",
-      summary: "Everything in the Essential Silk Road, plus a night in a traditional yurt camp by the ancient Ayaz Kala fortresses in the Kyzylkum Desert: local hospitality, live music, and unforgettable stargazing.",
-      price: "From €2,350 pp",
-      cities: ["Khiva", "Kyzylkum Desert", "Bukhara", "Samarkand", "Tashkent"],
+      title: "Silk Road Cities & Desert Experience",
+      summary: "An unhurried private journey through Uzbekistan's great Silk Road cities, extended with ancient Khorezm fortresses and a memorable night at Ayaz Kala Yurt Camp.",
+      price: "2 guests: From €1,950 pp · 4 guests: From €1,650 pp",
+      cities: ["Tashkent", "Samarkand", "Bukhara", "Khiva", "Ancient Khorezm Fortresses", "Ayaz Kala", "Tashkent"],
       highlights: [
-        "All highlights of the Essential Silk Road (9 days)",
-        "Night at Ayaz Kala yurt camp in the Kyzylkum Desert",
-        "Live traditional music around the campfire",
-        "Stargazing far from city lights in the open desert",
-        "Camel ride at sunrise among ancient fortresses"
+        "Guided discovery and free time in Tashkent, Samarkand, Bukhara, and Khiva",
+        "High-speed rail and domestic flights on the specified route",
+        "Ancient Khorezm fortresses in the desert landscape",
+        "Overnight at Ayaz Kala Yurt Camp with traditional dinner",
+        "Optional camel ride and local folk entertainment"
       ],
-      includes: ["Private English-speaking guide", "All in-country transfers", "High-speed train tickets", "Yurt camp with full board", "Comfortable 3–5 star hotels with daily breakfast", "Airport pick-up and drop-off", "Monument entrance fees"],
-      excludes: ["International flights", "Travel insurance", "Personal expenses"],
+      includes: ["3- to 4-star hotels in a double or twin room", "Daily breakfast", "Airport, railway station, and hotel transfers", "Private transportation", "English-speaking guide", "High-speed train tickets where specified", "Domestic flights where specified", "Entrance fees", "Ayaz Kala yurt stay and traditional dinner"],
+      excludes: ["International flights", "Travel insurance", "Lunches and dinners unless specified", "Optional camel ride, folk entertainment, masterclasses, and activities", "Personal expenses"],
       days: [
-        { day: 1, title: "Arrival in Tashkent", body: "Met at the airport and transferred to your hotel." },
-        { day: 2, title: "Tashkent city tour → train to Samarkand", body: "Chorsu Bazaar, metro, then evening train to Samarkand." },
-        { day: 3, title: "Samarkand: Registan & Shah-i-Zinda", body: "The iconic square and the spectacular necropolis." },
-        { day: 4, title: "Samarkand → Bukhara", body: "Train to Bukhara; afternoon at Lyab-i-Hauz." },
-        { day: 5, title: "Bukhara: Ark, bazaars, Kalon", body: "Full day exploring the old city monuments." },
-        { day: 6, title: "Bukhara → Ayaz Kala yurt camp", body: "Drive through the Kyzylkum steppe to the ancient fortresses. Settle into your yurt, traditional dinner, live music, and stargazing." },
-        { day: 7, title: "Desert morning → Khiva", body: "Sunrise camel ride among the ruins, then drive to Khiva." },
-        { day: 8, title: "Khiva: Ichan-Kala", body: "Full day inside the walled city." },
-        { day: 9, title: "Khiva city: deeper exploration", body: "Lesser-visited corners, artisan workshops, and the city walls at sunset." },
-        { day: 10, title: "Khiva → Tashkent flight", body: "Morning flight back to Tashkent." },
-        { day: 11, title: "Tashkent, departure day", body: "Final morning in Tashkent before international departure." }
+        { day: 1, title: "Arrival in Tashkent", body: "Welcome to Uzbekistan! Upon arrival at Tashkent International Airport, you will be met by your guide and transferred to your hotel. Depending on your arrival time, begin with a guided introduction to the capital's modern avenues, Soviet architecture, bazaars, and historic quarters." },
+        { day: 2, title: "Tashkent at Leisure → Samarkand", body: "Explore Tashkent independently at your own pace. Visit museums, stroll through parks, return to Chorsu Bazaar, or relax in one of the city's cafés. Optional excursions can be arranged. In the evening, transfer to the railway station for the high-speed train to Samarkand and transfer to your hotel on arrival." },
+        { day: 3, title: "Samarkand", body: "Discover one of the great centers of the Silk Road with your guide, exploring magnificent architectural ensembles, vibrant squares, historic neighborhoods, and UNESCO World Heritage monuments while learning about the civilizations that shaped the city." },
+        { day: 4, title: "Samarkand at Leisure", body: "Experience Samarkand at your own pace. Revisit favorite monuments, browse local markets, relax in traditional tea houses, or choose optional paper-making workshops, wine tasting, cooking masterclasses, village visits, or countryside excursions." },
+        { day: 5, title: "Samarkand → Bukhara", body: "After breakfast, transfer to the railway station and travel by high-speed train to Bukhara. Check in to your hotel before a guided afternoon excursion through the historic center. In the evening, enjoy dinner in the atmospheric Old Town." },
+        { day: 6, title: "Bukhara", body: "Continue exploring Bukhara during a half-day guided excursion through its monuments, trading domes, and historic quarters. The rest of the day is free for cafés, handicraft shops, a historic hammam, or independent exploration." },
+        { day: 7, title: "Bukhara → Khiva", body: "Transfer to the airport for your domestic flight to Urgench. Continue to Khiva, check in, and begin a guided tour of UNESCO-listed Ichan-Kala, where preserved palaces, mosques, madrasas, and minarets evoke the golden age of the Silk Road." },
+        { day: 8, title: "Khiva at Leisure", body: "Enjoy a shorter guided walk through some of Khiva's lesser-known corners before spending the rest of the day at leisure. Browse artisan workshops, discover hidden courtyards, climb the city walls, shop for handicrafts, or enjoy the peaceful old city." },
+        { day: 9, title: "Khiva → Ancient Fortresses → Ayaz Kala Yurt Camp", body: "Journey into the landscapes of ancient Khorezm and explore the desert fortresses that once guarded the Silk Road. Continue to Ayaz Kala Yurt Camp for nomadic hospitality, with an optional camel ride, traditional dinner, optional local folk entertainment, and an evening beneath the desert sky." },
+        { day: 10, title: "Ayaz Kala → Tashkent", body: "After a peaceful desert morning, transfer to Urgench Airport for your domestic flight to Tashkent. Transfer to your hotel and enjoy your final afternoon at leisure for shopping, independent sightseeing, or relaxation." },
+        { day: 11, title: "Departure", body: "After breakfast, transfer to Tashkent International Airport for your onward flight, bringing your journey through the Silk Road cities and deserts of Uzbekistan to a close." }
       ],
       t: {
-        ru: { duration: "11 дней", title: "Шёлковый путь и пустыня", summary: "Всё из «Классического Шёлкового пути» плюс ночь в юрточном лагере у крепостей Аяз-Кала.", price: "От €2 350 с человека", highlights: ["Все впечатления «Классического Шёлкового пути» (9 дней)","Ночь в юрточном лагере Аяз-Кала в пустыне Кызылкум","Живая традиционная музыка у костра","Звёздное небо вдали от городских огней","Прогулка на верблюде на рассвете среди древних крепостей"] },
-        de: { duration: "11 Tage", title: "Seidenstraße & Wüsten-Auszeit", summary: "Alles aus der klassischen Seidenstraße plus eine Nacht im Jurtenlager bei den Ayaz-Kala-Festungen.", price: "Ab €2.350 p.P.", highlights: ["Alle Highlights der klassischen Seidenstraße (9 Tage)","Nacht im Jurtenlager Ayaz Kala in der Kysylkum-Wüste","Live-Traditionsmusik am Lagerfeuer","Sternenhimmel fernab der Städte","Kamelritt bei Sonnenaufgang zwischen antiken Festungen"] },
-        fr: { duration: "11 jours", title: "Route de la Soie & escapade dans le désert", summary: "Tout le voyage essentiel, plus une nuit dans un campement de yourtes près des forteresses d'Ayaz Kala.", price: "À partir de 2 350 € p.p.", highlights: ["Tous les temps forts de la Route de la Soie essentielle (9 jours)","Nuit au campement de yourtes d'Ayaz Kala dans le désert du Kyzylkoum","Musique traditionnelle en direct autour du feu","Ciel étoilé loin des lumières de la ville","Balade à dos de chameau au lever du soleil parmi les forteresses"] },
-        es: { duration: "11 días", title: "Ruta de la Seda y escapada al desierto", summary: "Todo el viaje esencial, más una noche en un campamento de yurtas junto a las fortalezas de Ayaz Kala.", price: "Desde €2.350 p.p.", highlights: ["Todos los puntos destacados de la Ruta de la Seda esencial (9 días)","Noche en el campamento de yurtas de Ayaz Kala en el desierto de Kyzylkum","Música tradicional en directo alrededor del fuego","Cielo estrellado lejos de las luces de la ciudad","Paseo en camello al amanecer entre fortalezas antiguas"] },
-        it: { duration: "11 giorni", title: "Via della Seta e fuga nel deserto", summary: "Tutto il viaggio essenziale, più una notte in un campo di yurte vicino alle fortezze di Ayaz Kala.", price: "Da €2.350 p.p.", highlights: ["Tutti i punti salienti della Via della Seta essenziale (9 giorni)","Notte al campo di yurte di Ayaz Kala nel deserto del Kyzylkum","Musica tradizionale dal vivo intorno al fuoco","Cielo stellato lontano dalle luci della città","Giro in cammello all'alba tra le fortezze antiche"] }
+        ru: { duration: "11 дней", title: "Города Шёлкового пути и пустыня", price: "2 гостя: от €1 950 · 4 гостя: от €1 650 с человека" },
+        de: { duration: "11 Tage", title: "Seidenstraßen-Städte & Wüstenerlebnis", price: "2 Gäste: ab €1.950 · 4 Gäste: ab €1.650 p.P." },
+        fr: { duration: "11 jours", title: "Villes de la Route de la Soie & désert", price: "2 voyageurs : dès 1 950 € · 4 voyageurs : dès 1 650 € p.p." },
+        es: { duration: "11 días", title: "Ciudades de la Ruta de la Seda y desierto", price: "2 viajeros: desde 1.950 € · 4 viajeros: desde 1.650 € p.p." },
+        it: { duration: "11 giorni", title: "Città della Via della Seta e deserto", price: "2 ospiti: da €1.950 · 4 ospiti: da €1.650 p.p." }
       }
     },
     {
-      id: "journey-complete", order: 2, published: true, link: "#enquire",
+      id: "journey-complete", order: 2, offerVersion: 3, published: true, link: "#enquire",
       image: "assets/uz-chorminor.webp",
       duration: "14 Days",
-      title: "The Complete Uzbekistan Journey",
-      summary: "Our most complete itinerary: the legendary Silk Road cities together with Shahrisabz, birthplace of Amir Timur, and the craft-rich Fergana Valley: ceramics, silk, and authentic local life.",
-      price: "From €2,850 pp",
-      cities: ["Tashkent", "Fergana Valley", "Samarkand", "Shahrisabz", "Bukhara", "Khiva"],
+      title: "Uzbekistan Grand Discovery",
+      summary: "A comprehensive private journey combining Uzbekistan's Silk Road cities with the Fergana Valley, Shahrisabz, and an authentic village-life experience in Vobkent.",
+      price: "2 guests: From €2,650 pp · 4 guests: From €2,250 pp",
+      cities: ["Tashkent", "Kokand", "Fergana Valley", "Tashkent", "Samarkand", "Shahrisabz", "Samarkand", "Bukhara", "Vobkent", "Bukhara", "Khiva", "Tashkent"],
       highlights: [
-        "All highlights of the Silk Road & Desert Escape",
-        "Shahrisabz: birthplace of Amir Timur, off the main tourist trail",
-        "Fergana Valley: silk weaving, Ikat textiles, and ceramics in Rishtan",
-        "Andijan market and authentic local life far from tourist crowds"
+        "Fergana Valley craft traditions, family workshops, and local markets",
+        "Shahrisabz, birthplace of Amir Timur, as a day excursion from Samarkand",
+        "Guided discovery and free time in Samarkand and Bukhara",
+        "Village life, home-cooked cuisine, and an overnight stay in Vobkent",
+        "UNESCO-listed Ichan-Kala in Khiva"
       ],
-      includes: ["Private English-speaking guide", "All in-country transfers including domestic flights", "High-speed train tickets", "Comfortable 3–5 star hotels with daily breakfast", "Airport pick-up and drop-off", "Monument entrance fees", "Craft workshop visits"],
-      excludes: ["International flights", "Travel insurance", "Personal expenses"],
+      includes: ["3- to 4-star hotels in a double or twin room", "Daily breakfast", "Airport, railway station, and hotel transfers", "Private transportation", "English-speaking guide", "Train tickets where specified", "Domestic flights where specified", "Entrance fees", "Vobkent village experience and overnight stay"],
+      excludes: ["International flights", "Travel insurance", "Lunches and dinners unless specified", "Optional masterclasses and activities", "Personal expenses"],
       days: [
-        { day: 1, title: "Arrival in Tashkent", body: "Airport welcome and transfer to hotel." },
-        { day: 2, title: "Tashkent city tour", body: "Chorsu Bazaar, Khast Imam, Soviet metro." },
-        { day: 3, title: "Tashkent → Fergana Valley (Kokand & Rishtan)", body: "Drive through the Kamchik Pass. Kokand's Khan's Palace and a ceramics workshop in Rishtan." },
-        { day: 4, title: "Fergana Valley: Margilan silk", body: "Yodgorlik Silk Factory, Margilan bazaar, and local lunch with a weaving family." },
-        { day: 5, title: "Fergana → Samarkand", body: "Scenic drive or domestic flight. Afternoon arrival and settle in." },
-        { day: 6, title: "Samarkand: Registan & Shah-i-Zinda", body: "The two iconic UNESCO sites." },
-        { day: 7, title: "Samarkand → Shahrisabz → Bukhara", body: "Ruins of Ak-Saray Palace, Dorut Tilovat complex, then road to Bukhara." },
-        { day: 8, title: "Bukhara: Ark, bazaars, Kalon", body: "Full exploration of the medieval city centre." },
-        { day: 9, title: "Bukhara second day", body: "Sitorai Mokhi-Khosa summer palace, lesser-known neighbourhoods, and artisan studios." },
-        { day: 10, title: "Bukhara → Ayaz Kala yurt camp", body: "Drive to the Kyzylkum. Yurt camp, traditional dinner, live music, stargazing." },
-        { day: 11, title: "Desert morning → Khiva", body: "Sunrise camel ride, then drive to Khiva." },
-        { day: 12, title: "Khiva: Ichan-Kala", body: "Full day inside the walled city." },
-        { day: 13, title: "Khiva → Tashkent flight", body: "Domestic flight back to Tashkent." },
-        { day: 14, title: "Tashkent, departure day", body: "Final city hours before international flights." }
+        { day: 1, title: "Arrival in Tashkent", body: "Welcome to Uzbekistan! Upon arrival at Tashkent International Airport, you will be met by your guide and transferred to your hotel. Depending on your arrival time, enjoy a guided introduction to the capital before settling in for the evening." },
+        { day: 2, title: "Tashkent at Leisure", body: "Explore Tashkent at your own pace. Visit museums, browse local markets, relax in cafés, or choose from a selection of optional experiences. Overnight in Tashkent." },
+        { day: 3, title: "Tashkent → Kokand → Fergana", body: "Transfer to the railway station and board the train to Kokand. Upon arrival, begin exploring the cultural heritage of the Fergana Valley before continuing by road through the valley's renowned craft centers to your hotel." },
+        { day: 4, title: "Fergana Valley", body: "Spend the day discovering the traditions and craftsmanship of the Fergana Valley. Visit family-run workshops, bustling local markets, and artisan studios while experiencing one of Uzbekistan's most authentic regions." },
+        { day: 5, title: "Fergana → Tashkent → Samarkand", body: "Return to Tashkent by train before boarding the high-speed train to Samarkand. Upon arrival, transfer to your hotel and enjoy the evening at leisure." },
+        { day: 6, title: "Discover Samarkand", body: "Spend a full day exploring the legendary Silk Road city of Samarkand with its magnificent monuments, elegant squares, and remarkable architectural heritage." },
+        { day: 7, title: "Shahrisabz Excursion", body: "Travel through scenic mountain landscapes to Shahrisabz, the birthplace of Amir Timur. Explore the city's historical treasures before returning to Samarkand for the evening." },
+        { day: 8, title: "Samarkand at Leisure", body: "Enjoy a free day in Samarkand. Optional experiences such as traditional paper making, wine tasting, cooking classes, or countryside excursions can be arranged according to your interests." },
+        { day: 9, title: "Samarkand → Bukhara", body: "Travel by high-speed train to Bukhara. Upon arrival, enjoy a guided afternoon tour through the UNESCO-listed Old Town before dinner in one of the city's traditional restaurants." },
+        { day: 10, title: "Explore Bukhara", body: "Continue discovering Bukhara during a half-day guided excursion. The afternoon is free for independent exploration, shopping, or relaxing in one of the city's historic tea houses." },
+        { day: 11, title: "Village Life Experience in Vobkent", body: "Leave the city behind and spend the day in the traditional village of Vobkent. Meet local families, discover everyday traditions, enjoy home-cooked Uzbek cuisine, and experience the warm hospitality that defines village life. Overnight in Vobkent." },
+        { day: 12, title: "Bukhara → Khiva", body: "Transfer to the airport for your domestic flight to Urgench. Continue to Khiva and begin your guided exploration of remarkable UNESCO-listed Ichan-Kala." },
+        { day: 13, title: "Khiva → Tashkent", body: "Enjoy a relaxed morning and a short guided walk through Khiva before transferring to Urgench Airport for your evening flight to Tashkent. Upon arrival, transfer to your hotel for your final overnight stay in Uzbekistan." },
+        { day: 14, title: "Departure", body: "After breakfast, transfer to Tashkent International Airport for your onward flight, bringing your unforgettable journey through Uzbekistan to a close." }
       ],
       t: {
-        ru: { duration: "14 дней", title: "Полное путешествие по Узбекистану", summary: "Наш самый полный маршрут: легендарные города Шёлкового пути, Шахрисабз и Ферганская долина.", price: "От €2 850 с человека", highlights: ["Все впечатления маршрута «Шёлковый путь и пустыня»","Шахрисабз: родина Амира Тимура, в стороне от туристических троп","Ферганская долина: шёлкоткачество, икат и керамика в Риштане","Андижанский рынок и подлинная местная жизнь"] },
-        de: { duration: "14 Tage", title: "Die komplette Usbekistan-Reise", summary: "Unsere umfassendste Route: legendäre Seidenstraßen-Städte, Shahrisabz und das Ferghana-Tal.", price: "Ab €2.850 p.P.", highlights: ["Alle Highlights der Seidenstraße & Wüsten-Auszeit","Shahrisabz: Geburtsort von Amir Timur abseits der Touristenpfade","Ferghana-Tal: Seidenweberei, Ikat-Textilien und Keramik in Rishtan","Andijan-Markt und authentisches Einheimischenleben"] },
-        fr: { duration: "14 jours", title: "Le grand voyage en Ouzbékistan", summary: "Notre itinéraire le plus complet : villes de la Route de la Soie, Shakhrisabz et la vallée de Ferghana.", price: "À partir de 2 850 € p.p.", highlights: ["Tous les temps forts de la Route de la Soie & escapade dans le désert","Shakhrisabz: berceau d'Amir Timur, loin des sentiers touristiques","Vallée de Ferghana: tissage de soie, textiles Ikat et céramiques à Rishtan","Marché d'Andijan et vie locale authentique"] },
-        es: { duration: "14 días", title: "El viaje completo por Uzbekistán", summary: "Nuestro itinerario más completo: ciudades de la Ruta de la Seda, Shajrisabz y el valle de Fergana.", price: "Desde €2.850 p.p.", highlights: ["Todos los puntos destacados de la Ruta de la Seda y escapada al desierto","Shajrisabz: cuna de Amir Timur, alejada de las rutas turísticas","Valle de Fergana: tejeduría de seda, textiles Ikat y cerámica en Rishtan","Mercado de Andiyán y vida local auténtica"] },
-        it: { duration: "14 giorni", title: "Il viaggio completo in Uzbekistan", summary: "Il nostro itinerario più completo: città della Via della Seta, Shahrisabz e la valle di Fergana.", price: "Da €2.850 p.p.", highlights: ["Tutti i punti salienti della Via della Seta & fuga nel deserto","Shahrisabz: città natale di Amir Timur, lontana dai circuiti turistici","Valle di Fergana: tessitura della seta, tessuti Ikat e ceramiche a Rishtan","Mercato di Andijan e autentica vita locale"] }
+        ru: { duration: "14 дней", title: "Большое путешествие по Узбекистану", price: "2 гостя: от €2 650 · 4 гостя: от €2 250 с человека" },
+        de: { duration: "14 Tage", title: "Die große Usbekistan-Entdeckungsreise", price: "2 Gäste: ab €2.650 · 4 Gäste: ab €2.250 p.P." },
+        fr: { duration: "14 jours", title: "Grande découverte de l'Ouzbékistan", price: "2 voyageurs : dès 2 650 € · 4 voyageurs : dès 2 250 € p.p." },
+        es: { duration: "14 días", title: "Gran descubrimiento de Uzbekistán", price: "2 viajeros: desde 2.650 € · 4 viajeros: desde 2.250 € p.p." },
+        it: { duration: "14 giorni", title: "Grande scoperta dell'Uzbekistan", price: "2 ospiti: da €2.650 · 4 ospiti: da €2.250 p.p." }
       }
     }
   ];
@@ -144,6 +146,7 @@
     var title = esc(pick(o, "title", lang));
     var summary = esc(pick(o, "summary", lang));
     var duration = esc(pick(o, "duration", lang));
+    var price = esc(pick(o, "price", lang));
     var cta = esc(CTA[lang] || CTA.en);
     var href = "journey.html?id=" + encodeURIComponent(o.id || "");
     return '<a class="journey-itinerary" href="' + esc(href) + '" data-journey="' + title + '">' +
@@ -152,6 +155,7 @@
         '<span class="journey-duration">' + duration + '</span>' +
         '<h3>' + title + '</h3>' +
         '<p>' + summary + '</p>' +
+        '<span class="journey-card-price">' + price + '</span>' +
         '<span class="journey-cta">' + cta + ' <em aria-hidden="true">→</em></span>' +
       '</div></a>';
   }
@@ -191,7 +195,9 @@
       db.collection("journeys").orderBy("order").onSnapshot(function (snap) {
         var list = [];
         snap.forEach(function (d) { var j = d.data(); if (j && j.published) list.push(j); });
-        if (list.length) {
+        var currentOffer = list.length === JOURNEYS.length &&
+          list.every(function (j) { return Number(j.offerVersion || 0) >= 3; });
+        if (currentOffer) {
           data = list;
           try { localStorage.setItem(CACHE_KEY, JSON.stringify(list)); } catch (e) {}
           render();
